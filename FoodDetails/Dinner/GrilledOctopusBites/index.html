@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../../../darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteRush - Order Details</title>
+    <link rel="stylesheet" href="../DinnerDetails.css">
+    <link rel="stylesheet" href="../../../Cart/cart.css">
+    <link rel="stylesheet" href="../../../darkmode.css">
+</head>
+<body>
+    <nav>
+        <div class="logo-section">
+            <a href="../../../BiteRushHomePage/index.html">
+                <img src="../../../BiteRushHomePage/HomePagePics/burger.png" alt="BiteRush Logo">
+            </a>
+            <h1>BiteRush</h1>
+        </div>
+        <div class="user-profile">
+            <img src="../../../BiteRushHomePage/HomePagePics/image 108.png" alt="User Profile">
+        </div>
+    </nav>
+    <!-- Floating Back Button -->
+    <a href="../../../BiteRushFoodMenuPages/BiteRushDinnerPage/index.html">
+    <button class="back-btn" aria-label="Go Back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+    </a>
+
+    <main class="checkout-container">
+        <div class="checkout-card item-card">
+            <img src="../../../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/octopus.png" alt="SeafoodBites" class="item-img">
+            <div class="item-details">
+                <h2 class="item-title">SeafoodBites</h2>
+                <h3 class="item-subtitle">Sous Vide and Grilled Octopus</h3>
+                <p class="item-description">Melt-in-your-mouth sous vide octopus tentacles finished on a hot grill for a smoky, tender flavor.</p>
+                <div class="item-meta">
+                    <span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>15&ndash;20 minutes</span>
+                    <span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>400&ndash;500 kcal</span>
+                </div>
+            </div>
+            <div class="item-quantity-price">
+                <span class="item-price">&#8369; 399</span>
+                <div class="quantity-control"><button class="qty-btn">-</button><span class="qty-count">1</span><button class="qty-btn">+</button></div>
+            </div>
+        </div>
+        <div class="checkout-card summary-card">
+            <div class="summary-header"><h2>Subtotal</h2><span class="header-amount">&#8369; 399.00</span></div>
+            <div class="fee-row"><div class="fee-info"><span class="fee-title">Standard delivery</span><span class="fee-subtext">&#8369; 149 more to free delivery</span></div><span class="fee-amount">&#8369; 399.00</span></div>
+            <div class="fee-row"><div class="fee-info"><span class="fee-title">Delivery fee</span><span class="fee-subtext">Fast and reliable delivery</span></div><span class="fee-amount">&#8369; 4.00</span></div>
+            <div class="fee-row"><div class="fee-info flex-center"><span class="fee-title">Service fee</span><button class="info-icon" aria-label="Service fee info">i</button></div><span class="fee-amount">&#8369; 9.00</span></div>
+            <div class="voucher-section-title"><span>Apply a voucher</span></div>
+            <div class="voucher-list">
+                <label class="voucher-item"><div class="voucher-ticket"><div class="voucher-left"><span class="discount">20%</span><span class="off">Off</span></div><div class="voucher-right"><strong>20% off Capped at &#8369;500</strong><p>Min. Spend &#8369;249</p><p class="validity">Valid till 11/30/25</p></div></div><div class="voucher-radio-wrapper"><input type="radio" name="voucher" class="voucher-radio"><span class="custom-radio"></span></div></label>
+                <label class="voucher-item"><div class="voucher-ticket"><div class="voucher-left"><span class="discount">15%</span><span class="off">Off</span></div><div class="voucher-right"><strong>15% off Capped at &#8369;600</strong><p>Min. Spend &#8369;199</p><p class="validity">Valid till 11/30/25</p></div></div><div class="voucher-radio-wrapper"><input type="radio" name="voucher" class="voucher-radio"><span class="custom-radio"></span></div></label>
+            </div>
+        </div>
+        <div class="checkout-card total-card">
+            <div class="utensils-row"><div class="utensils-info"><div class="utensils-title"><img src="../../pics/utensils.png" alt="Utensils Icon" class="utensils-icon"><span>Utensils</span></div><p>If Utensils aren't needed. Thanks for reducing waste!</p></div><label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label></div>
+            <div class="total-row"><div class="total-label"><h2>Total</h2><span>(Inclu. fees and tax)</span></div><span class="total-amount">&#8369; 412.00</span></div>
+        </div>
+        <a href="../../../DeliveryAddress/index.html" class="checkout-link"><button class="checkout-btn">Review payment and address</button></a>
+    </main>
+    <script src="../../../Cart/cart.js"></script>
+    <script src="../../../Cart/checkout.js"></script>
+</body>
+</html>
