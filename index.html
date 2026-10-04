@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="BiteRushHomePage/HomePageKulay.css">
+    <link rel="stylesheet" href="Cart/cart.css">
+    <title>BiteRush - Home</title>
+    <link rel="stylesheet" href="darkmode.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo-section">
+            <img src="BiteRushHomePage/HomePagePics/burger.png" alt="BiteRush Logo">
+            <h1>BiteRush</h1>
+        </div>
+
+        <div class="user-profile">
+            <a href="UserInfo/index.html">
+                <img src="BiteRushHomePage/HomePagePics/image%20108.png" alt="User Profile">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Category Filters & Cart Row -->
+    <div class="filter-cart-row">
+        <div class="filter-bar">
+            <a href="index.html">
+                <button class="filter-btn active">Home</button>
+            </a>
+            <a href="BiteRushFoodMenuPages/BiteRushBreakfastPage/index.html">
+                <button class="filter-btn">Breakfast</button>
+            </a>
+            <a href="BiteRushFoodMenuPages/BiteRushLunchPage/index.html">
+                <button class="filter-btn">Lunch</button>
+            </a>
+            <a href="BiteRushFoodMenuPages/BiteRushDinnerPage/index.html">
+                <button class="filter-btn">Dinner</button>
+            </a>
+            <a href="BiteRushFoodMenuPages/BiteRushBGandFR/index.html">
+                <button class="filter-btn">Burger and Fries</button>
+            </a>
+            <button class="search-btn" aria-label="Search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Favorites Nav Button -->
+        <a href="FavPage/index.html" class="favorites-btn" aria-label="View Favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="cart-badge" id="favBadge">0</span>
+        </a>
+
+        <button class="cart-btn" id="cartToggleBtn" aria-label="Shopping Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-container">
+            <div class="hero-content">
+                <span class="badge">BITERUSH BESTSELLER</span>
+                
+                <h1 class="hero-title">
+                    THE INFAMOUS<br>CHEESE BURGER
+                </h1>
+
+                <p class="hero-desc">
+                    A classic beef, melted cheese, fresh toppings<br>
+                    nostalgic Flavor in a bun
+                </p>
+
+                <div class="cta-row">
+                    <a href="BiteRushHomePage/FoodDetailsHome/infamousBurger/">
+                        <button class="order-btn">ORDER NOW</button>    
+                    </a>
+                    <span class="price">₱179</span>
+                </div>
+
+                <div class="cards-preview">
+                    <div class="preview-card">
+                        <a href="BiteRushHomePage/FoodDetailsHome/BaconHome/" class="preview-card-link">
+                            <img src="BiteRushHomePage/HomePagePics/image%2053.png" alt="The Bacon Cheese Burger">
+                            <div class="card-info">
+                                <div class="stars">★★★★★</div>
+                                <h4>The Bacon Cheese Burger</h4>
+                                <span class="card-price">₱189</span>    
+                        </a>
+                        </div>
+                    </div>
+
+                    <div class="preview-card active-card">
+                        <a href="BiteRushHomePage/FoodDetailsHome/infamousBurger/" class="preview-card-link">
+                            <img src="BiteRushHomePage/HomePagePics/image%2054.png" alt="The Infamous Cheese Burger">
+                            <div class="card-info">
+                                <div class="stars">★★★★★</div>
+                                <h4>The Infamous Cheese Burger</h4>
+                                <span class="card-price">₱179</span>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <div class="yellow-glow"></div>
+
+                <img src="BiteRushHomePage/HomePagePics/image%2049.png" alt="Tomato Slice Top" class="floating-img float-tomato-top">
+                <img src="BiteRushHomePage/HomePagePics/image 49.png" alt="Tomato Slice Bottom" class="floating-img float-tomato-bottom">                
+                <img src="BiteRushHomePage/HomePagePics/image%2052.png" alt="Lettuce Right" class="floating-img float-lettuce-right">
+                <img src="BiteRushHomePage/HomePagePics/image%2052.png" alt="Lettuce Bottom" class="floating-img float-lettuce-bottom">
+
+                <img src="BiteRushHomePage/HomePagePics/image%2048.png" alt="Featured Cheese Burger" class="main-burger-img">
+            </div>
+        </section>
+
+        <!-- Food Menu Section -->
+        <section class="menu-container">
+            <h2 class="section-heading">Featured Menu</h2>
+            <div class="food-grid">
+
+                <!-- Card 1: TuyoBites -->
+                <div class="food-card" data-title="TuyoBites" data-price="149" data-img="BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/tuyo.png" data-link="BiteRushHomePage/FoodDetailsHome/TuyoBitesHtml/">
+                    <button class="favorite-btn" aria-label="Add to favorites">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                    <img src="BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/tuyo.png" alt="TuyoBites" class="food-img">
+                    <div class="food-info">
+                        <h2 class="food-title">TuyoBites</h2>
+
+                        <div class="hover-content">
+                            <span class="food-category">Filipino Breakfast</span>
+                            <p class="food-description">Crispy fried tuyo (dried fish), flavorful beef tapa, fragrant garlic rice, salted egg with fresh tomatoes, and spicy vinegar.</p>
+                        </div>
+
+                        <div class="food-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                15–25 minutes
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                                700–850 kcal
+                            </span>
+                        </div>
+
+                        <div class="price-container">
+                            <span class="price">₱ 149</span>
+                            <a href="BiteRushHomePage/FoodDetailsHome/TuyoBitesHtml/">
+                                <button class="buy-btn">Buy</button>
+                            </a>    
+                        </div>
+                    </div>
+                    <button class="add-btn" aria-label="Add item">+</button>
+                </div>
+
+                <!-- Card 2: SandwichBites -->
+                <div class="food-card" data-title="SandwichBites" data-price="119" data-img="BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/sandbites.png" data-link="BiteRushHomePage/FoodDetailsHome/SandHome/">
+                    <button class="favorite-btn" aria-label="Add to favorites">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                    <img src="BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/sandbites.png" alt="SandwichBites" class="food-img">
+                    <div class="food-info">
+                        <h2 class="food-title">SandwichBites</h2>
+
+                        <div class="hover-content">
+                            <span class="food-category">Breakfast Sandwich</span>
+                            <p class="food-description">Toasted artisan bread packed with savory ham, melted cheese, scrambled eggs, and signature house sauce.</p>
+                        </div>
+
+                        <div class="food-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                15–20 minutes
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                                450–550 kcal
+                            </span>
+                        </div>
+
+                        <div class="price-container">
+                            <span class="price">₱ 119</span>
+                            <a href="BiteRushHomePage/FoodDetailsHome/SandHome/">
+                                <button class="buy-btn">Buy</button>
+                            </a>  
+                        </div>
+                    </div>
+                    <button class="add-btn" aria-label="Add item">+</button>
+                </div>
+
+                <!-- Card 3: PanBites -->
+                <div class="food-card" data-title="PanBites" data-price="179" data-img="BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/pan.png" data-link="BiteRushHomePage/FoodDetailsHome/PanHome/">
+                    <button class="favorite-btn" aria-label="Add to favorites">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                    <img src="BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/pan.png" alt="PanBites" class="food-img">
+                    <div class="food-info">
+                        <h2 class="food-title">PanBites</h2>
+
+                        <div class="hover-content">
+                            <span class="food-category">Breakfast Pancake</span>
+                            <p class="food-description">Fluffy golden pancakes served with whipped butter, rich maple syrup, and a side of crispy bacon.</p>
+                        </div>
+
+                        <div class="food-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                15–25 minutes
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                                700–850 kcal
+                            </span>
+                        </div>
+
+                        <div class="price-container">
+                            <span class="price">₱ 179</span>
+                            <a href="BiteRushHomePage/FoodDetailsHome/PanHome/">
+                                <button class="buy-btn">Buy</button>
+                            </a>
+                        </div>
+                    </div>
+                    <button class="add-btn" aria-label="Add item">+</button>
+                </div>
+
+                <!-- Card 4: CroissantBites -->
+                <div class="food-card" data-title="CroissantBites" data-price="149" data-img="BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/crois.png" data-link="BiteRushHomePage/FoodDetailsHome/CrossHome/">
+                    <button class="favorite-btn" aria-label="Add to favorites">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                    <img src="BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/crois.png" alt="CroissantBites" class="food-img">
+                    <div class="food-info">
+                        <h2 class="food-title">CroissantBites</h2>
+
+                        <div class="hover-content">
+                            <span class="food-category">Breakfast Croissant</span>
+                            <p class="food-description">Butter-flaky French croissant stuffed with creamy scrambled eggs, sharp cheddar, and sliced turkey breast.</p>
+                        </div>
+
+                        <div class="food-meta">
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                15–20 minutes
+                            </span>
+                            <span class="meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                                500–650 kcal
+                            </span>
+                        </div>
+
+                        <div class="price-container">
+                            <span class="price">₱ 149</span>
+                            <a href="BiteRushHomePage/FoodDetailsHome/CrossHome/">
+                                <button class="buy-btn">Buy</button>
+                            </a>
+                        </div>
+                    </div>
+                    <button class="add-btn" aria-label="Add item">+</button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Interactive Cart & Favorites Logic -->
+    <script>
+        // ---- Favorites Logic ----
+        const FAV_KEY = 'biterush_favorites';
+        let favorites = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+
+        function isFavorited(title) {
+            return favorites.some(f => f.title === title);
+        }
+
+        function updateFavBadge() {
+            const favBadge = document.getElementById('favBadge');
+            if (favBadge) favBadge.innerText = favorites.length;
+        }
+
+        function toggleFavorite(card, btn) {
+            const title = card.getAttribute('data-title');
+            const price = card.getAttribute('data-price');
+            const img = card.getAttribute('data-img');
+            const link = card.getAttribute('data-link');
+
+            if (isFavorited(title)) {
+                favorites = favorites.filter(f => f.title !== title);
+                btn.classList.remove('favorited');
+            } else {
+                favorites.push({ title, price, img, link });
+                btn.classList.add('favorited');
+            }
+            localStorage.setItem(FAV_KEY, JSON.stringify(favorites));
+            updateFavBadge();
+        }
+
+        document.querySelectorAll('.favorite-btn').forEach(btn => {
+            const card = btn.closest('.food-card');
+            if (isFavorited(card.getAttribute('data-title'))) {
+                btn.classList.add('favorited');
+            }
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleFavorite(card, btn);
+            });
+        });
+
+        updateFavBadge();
+    </script>
+    <script>
+        (() => {
+            const filterBar = document.querySelector('.filter-bar');
+            const searchButton = document.querySelector('.search-btn');
+            const grid = document.querySelector('.food-grid');
+            if (!filterBar || !searchButton || !grid) return;
+
+            const searchInput = document.createElement('input');
+            searchInput.className = 'search-input';
+            searchInput.type = 'search';
+            searchInput.placeholder = 'Search dishes';
+            searchInput.setAttribute('aria-label', 'Search dishes');
+            filterBar.insertBefore(searchInput, searchButton);
+
+            const emptyState = document.createElement('p');
+            emptyState.className = 'search-empty';
+            emptyState.textContent = 'No dishes match your search.';
+            emptyState.hidden = true;
+            grid.appendChild(emptyState);
+
+            const cards = [...grid.querySelectorAll('.food-card')];
+            const updateResults = () => {
+                const query = searchInput.value.trim().toLowerCase();
+                let visible = 0;
+                cards.forEach(card => {
+                    const matches = !query || card.textContent.toLowerCase().includes(query);
+                    card.hidden = !matches;
+                    if (matches) visible += 1;
+                });
+                emptyState.hidden = visible !== 0;
+            };
+            const submitSearch = () => {
+                const query = searchInput.value.trim();
+                if (query) location.href = 'SearchResults/index.html?q=' + encodeURIComponent(query);
+                else searchInput.focus();
+            };
+
+            searchButton.addEventListener('click', () => {
+                if (filterBar.classList.contains('search-open') && searchInput.value.trim()) {
+                    submitSearch();
+                    return;
+                }
+                const open = filterBar.classList.toggle('search-open');
+                searchButton.setAttribute('aria-expanded', String(open));
+                if (open) searchInput.focus();
+                else { searchInput.value = ''; updateResults(); }
+            });
+
+            searchInput.addEventListener('input', updateResults);
+            searchInput.addEventListener('keydown', event => {
+                if (event.key === 'Enter') submitSearch();
+                if (event.key === 'Escape') searchButton.click();
+            });
+            searchInput.addEventListener('keydown', event => {
+                if (event.key === 'Escape') searchButton.click();
+            });
+        })();
+    </script>        <script src="Cart/cart.js"></script>
+    </body>
+</html>

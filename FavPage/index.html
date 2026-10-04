@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="FavPage.css">
+    <title>BiteRush - Favorites</title>
+    <link rel="stylesheet" href="../Cart/cart.css">
+    <link rel="stylesheet" href="../darkmode.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo-section">
+            <a href="../BiteRushHomePage/index.html" class="logo-link">
+                <img src="../BiteRushHomePage/HomePagePics/burger.png" alt="BiteRush Logo">
+                <h1>BiteRush</h1>
+            </a>
+        </div>
+
+            <div class="user-profile">
+                <a href="../UserInfo/index.html">
+                    <img src="../BiteRushHomePage/HomePagePics/image%20108.png" alt="User Profile">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Category Filters & Cart Row -->
+    <div class="filter-cart-row">
+        <div class="filter-bar">
+            <a href="../BiteRushHomePage/index.html">
+                <button class="filter-btn">Home</button>
+            </a>
+            <a href="../BiteRushFoodMenuPages/BiteRushBreakfastPage/index.html">
+                <button class="filter-btn">Breakfast</button>
+            </a>
+            <a href="../BiteRushFoodMenuPages/BiteRushLunchPage/index.html">
+                <button class="filter-btn">Lunch</button>
+            </a>
+            <a href="../BiteRushFoodMenuPages/BiteRushDinnerPage/index.html">
+                <button class="filter-btn">Dinner</button>
+            </a>
+            <a href="../BiteRushFoodMenuPages/BiteRushBGandFR/index.html">
+                <button class="filter-btn">Burger and Fries</button>
+            </a>
+            <button class="search-btn" aria-label="Search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+        <button class="cart-btn" id="cartToggleBtn" aria-label="Shopping Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+    </div>
+
+    <!-- Slide-out Cart Drawer Panel -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-cart-btn" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart-msg">Your cart is empty.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span class="cart-total-price" id="cartTotal">₱ 0</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="favorites-main">
+        <div class="favorites-header">
+            <a href="../BiteRushHomePage/index.html" class="back-btn" aria-label="Go Back">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </a>
+            <h2 class="section-heading">Your Favorite Dishes ❤️</h2>
+        </div>
+
+        <div class="food-grid" id="favoritesGrid">
+            <!-- Dynamically populated via JS -->
+        </div>
+    </main>
+
+    <!-- Interactive Cart & Favorites Logic -->
+    <script>
+        const cartToggleBtn = document.getElementById('cartToggleBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartTotalEl = document.getElementById('cartTotal');
+        const cartBadge = document.getElementById('cartBadge');
+
+        let cart = [];
+
+        function toggleCart() {
+            cartDrawer.classList.toggle('open');
+            cartOverlay.classList.toggle('open');
+        }
+
+        cartToggleBtn.addEventListener('click', toggleCart);
+        closeCartBtn.addEventListener('click', toggleCart);
+        cartOverlay.addEventListener('click', toggleCart);
+
+        function addToCart(title, price, img) {
+            const existingItem = cart.find(item => item.title === title);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ title, price, img, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function updateCartQuantity(title, change) {
+            const item = cart.find(i => i.title === title);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.title !== title);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalCount = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart-msg">Your cart is empty.</div>';
+            } else {
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    totalCount += item.quantity;
+
+                    const itemEl = document.createElement('div');
+                    itemEl.classList.add('cart-item');
+                    itemEl.innerHTML = `
+                        <img src="${item.img}" alt="${item.title}">
+                        <div class="cart-item-details">
+                            <h4>${item.title}</h4>
+                            <span class="cart-item-price">₱${item.price}</span>
+                        </div>
+                        <div class="cart-quantity-controls">
+                            <button onclick="updateCartQuantity('${item.title}', -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="updateCartQuantity('${item.title}', 1)">+</button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemEl);
+                });
+            }
+
+            cartTotalEl.innerText = `₱ ${total}`;
+            cartBadge.innerText = totalCount;
+        }
+
+        // ---- Favorites Rendering ----
+        let favorites = JSON.parse(localStorage.getItem('biterush_favorites')) || [];
+        const favoritesGrid = document.getElementById('favoritesGrid');
+
+        const legacyImagePaths = {
+            'tuyo.png': '../BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/tuyo.png',
+            'sandbites.png': '../BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/sandbites.png',
+            'pan.png': '../BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/pan.png',
+            'crois.png': '../BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/crois.png',
+            'eng.png': '../BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/eng.png',
+            'fil.png': '../BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/fil.png',
+            'bur.png': '../BiteRushFoodMenuPages/BiteRushBreakfastPage/pics/bur.png',
+            'pasta.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/pasta.png',
+            'lasag.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/lasag.png',
+            'filetmignon.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/filetmignon.png',
+            'salmon.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/salmon.png',
+            'padthai.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/padthai.png',
+            'katsu.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/katsu.png',
+            'ramen.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/ramen.png',
+            'butterchick.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/butterchick.png',
+            'adobo.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/adobo.png',
+            'menudo.png': '../BiteRushFoodMenuPages/BiteRushLunchPage/pics/menudo.png',
+            'salad.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/salad.png',
+            'tbone.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/tbone.png',
+            'sushi.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/sushi.png',
+            'shrimp.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/shrimp.png',
+            'smokedsalad.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/smokedsalad.png',
+            'octopus.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/octopus.png',
+            'pesto.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/pesto.png',
+            'aglio.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/aglio.png',
+            'dumplings.png': '../BiteRushFoodMenuPages/BiteRushDinnerPage/pics/dumplings.png',
+            'regular.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/regular.png',
+            'gourmet.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/gourmet.png',
+            'sunrise.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/sunrise.png',
+            'niga.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/niga.png',
+            'loaded.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/loaded.png',
+            'sausage.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/sausage.png',
+            'pepe.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/pepe.png',
+            'crin.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/crin.png',
+            'sliders.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/sliders.png',
+            'pizza.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/pizza.png',
+            'classic.png': '../BiteRushFoodMenuPages/BiteRushBGandFR/pics/classic.png'
+        };
+
+        function resolveFavoriteImage(imagePath) {
+            if (!imagePath) return '';
+            if (imagePath.startsWith('file:') || imagePath.startsWith('http:') || imagePath.startsWith('https:')) {
+                return imagePath;
+            }
+            if (imagePath.startsWith('/BiteRushFoodMenuPages/')) {
+                return `..${imagePath}`;
+            }
+            const fileName = imagePath.split('/').pop().split('\\').pop();
+            return legacyImagePaths[fileName] || imagePath;
+        }
+
+        function renderFavorites() {
+            favoritesGrid.innerHTML = '';
+
+            if (favorites.length === 0) {
+                favoritesGrid.innerHTML = `
+                    <div class="empty-fav-state">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        <h3>No Favorites Yet</h3>
+                        <p>Click the heart icon on any food item to save it here for quick access!</p>
+                        <a href="../BiteRushHomePage/index.html" class="explore-btn">Explore Menu</a>
+                    </div>
+                `;
+                return;
+            }
+
+            favorites.forEach(item => {
+                const imagePath = resolveFavoriteImage(item.img);
+                const card = document.createElement('div');
+                card.classList.add('food-card');
+                card.setAttribute('data-title', item.title);
+                card.setAttribute('data-price', item.price);
+                card.setAttribute('data-img', imagePath);
+
+                card.innerHTML = `
+                    <img src="${imagePath}" alt="${item.title}" class="food-img">
+                    <div class="food-info">
+                        <h2 class="food-title">${item.title}</h2>
+                        <div class="hover-content">
+                            <span class="food-category">${item.category || ''}</span>
+                            <p class="food-description">${item.desc || ''}</p>
+                        </div>
+                        <div class="food-meta">
+                            <span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 15–25 minutes</span>
+                            <span class="meta-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg> 700–850 kcal</span>
+                        </div>
+                        <div class="price-container">
+                            <span class="price">₱ ${item.price}</span>
+                            <div class="card-actions">
+                                <a href="${item.link || '#'}"><button class="buy-btn">Buy</button></a>
+                                <button class="fav-card-btn active" onclick="removeFavorite('${item.title}')" aria-label="Remove Favorite">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-btn" aria-label="Add item">+</button>
+                `;
+                favoritesGrid.appendChild(card);
+            });
+
+            // Attach event listener to corner plus buttons
+            favoritesGrid.querySelectorAll('.add-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const card = e.target.closest('.food-card');
+                    addToCart(
+                        card.getAttribute('data-title'),
+                        parseFloat(card.getAttribute('data-price')),
+                        card.getAttribute('data-img')
+                    );
+                });
+            });
+        }
+
+        function removeFavorite(title) {
+            favorites = favorites.filter(item => item.title !== title);
+            localStorage.setItem('biterush_favorites', JSON.stringify(favorites));
+            renderFavorites();
+        }
+
+        renderFavorites();
+    </script>
+    <script>
+        (() => {
+            const filterBar = document.querySelector('.filter-bar');
+            const searchButton = document.querySelector('.search-btn');
+            const grid = document.querySelector('.food-grid');
+            if (!filterBar || !searchButton || !grid) return;
+            const searchInput = document.createElement('input');
+            searchInput.className = 'search-input';
+            searchInput.type = 'search';
+            searchInput.placeholder = 'Search dishes';
+            searchInput.setAttribute('aria-label', 'Search dishes');
+            filterBar.insertBefore(searchInput, searchButton);
+            const emptyState = document.createElement('p');
+            emptyState.className = 'search-empty';
+            emptyState.textContent = 'No dishes match your search.';
+            emptyState.hidden = true;
+            grid.appendChild(emptyState);
+            const cards = [...grid.querySelectorAll('.food-card')];
+            const updateResults = () => {
+                const query = searchInput.value.trim().toLowerCase();
+                let visible = 0;
+                cards.forEach(card => {
+                    const matches = !query || card.textContent.toLowerCase().includes(query);
+                    card.hidden = !matches;
+                    if (matches) visible += 1;
+                });
+                emptyState.hidden = visible !== 0;
+            };
+            const submitSearch = () => {
+                const query = searchInput.value.trim();
+                if (query) location.href = '../SearchResults/index.html?q=' + encodeURIComponent(query);
+                else searchInput.focus();
+            };
+
+            searchButton.addEventListener('click', () => {
+                if (filterBar.classList.contains('search-open') && searchInput.value.trim()) {
+                    submitSearch();
+                    return;
+                }
+                const open = filterBar.classList.toggle('search-open');
+                searchButton.setAttribute('aria-expanded', String(open));
+                if (open) searchInput.focus();
+                else { searchInput.value = ''; updateResults(); }
+            });
+
+            searchInput.addEventListener('input', updateResults);
+            searchInput.addEventListener('keydown', event => {
+                if (event.key === 'Enter') submitSearch();
+                if (event.key === 'Escape') searchButton.click();
+            });
+            searchInput.addEventListener('keydown', event => {
+                if (event.key === 'Escape') searchButton.click();
+            });
+        })();
+    </script>    <script src="../Cart/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | BiteRush</title>
+    <link rel="stylesheet" href="./style.css">
+     <!-- fontAwesome for social media & eye icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../darkmode.css">
+</head>
+<body>
+
+    <!-- top navigation -->
+    <header class="navbar">
+    <a class="logo" href="../BiteRushHomePage/index.html" aria-label="BiteRush home">
+        <img src="./images/burger.png" alt="Biterush logo">
+        <h3 class="biterush-title">BiteRush</h3>
+    </a>
+    <div class="page-title">Welcome back</div>
+    </header>
+
+    <!-- main contents -->
+    <main class="main">
+
+        <!-- left section branding and title -->
+        <section class="brand-section">
+          <span class="brand-eyebrow">GOOD FOOD. FAST MOOD.</span>
+          <img src="./images/burger.png" alt="image-center" class="burger-mascot">
+          <h1 class="biterush-center">BiteRush</h1>
+          <p>Rush your cravings<br><span>and enjoy every bite.</span></p>
+        </section>
+
+        <section class="login-box">
+            <div class="login-header">
+                <h2>Log In</h2>
+                <p>Enter your details to continue ordering.</p>
+                <!-- qr code -->
+                 <a href="../Login-QR-Page/index.html">
+                     <div class="qr-section">
+                         <span class="qr-notif">Log in with QR</span>
+                         <i class="fa-solid fa-qrcode qr-icon"></i>
+                     </div> 
+                 </a>
+            </div>
+
+            <!--email-->
+            <form action="../BiteRushHomePage/index.html" class="login-form">
+            <div class="input-group email">
+                <label for="login-identity">Phone number, username, or email</label>
+                <input id="login-identity" type="text" placeholder="you@example.com" autocomplete="username" required>
+            </div>
+            <!---password-->
+            <div class="input-group password-group">
+                <label for="login-password">Password</label>
+                <input id="login-password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+                <button type="button" class="toggle-password" aria-label="Show password"><i class="fa-regular fa-eye-slash"></i></button>
+            </div>
+
+            <!---login button-->
+                <button type="submit" class="button-primary">Log In</button>
+
+            <a href="ForgotPassword.html" class="forgot-password">Forgot password?</a>
+
+            <div class="line">
+                <span>OR</span>
+            </div>
+
+            <div class="social-buttons">
+                <a href="FacebookLogin.html" class="btn-social">
+                <i class="fa-brands fa-facebook" style="color: #1877f2;"></i> Facebook
+                </a>
+                <a href="GoogleLogin.html" class="btn-social">
+                <i class="fa-brands fa-google" style="color: #358cea;"></i> Google
+                </a>
+            </div>
+
+            <!-- footer sign up-->
+             <p class="signup-prompt">New to BiteRush? <a href="SignUp.html">Sign up</a></p>
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>

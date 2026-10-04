@@ -1,0 +1,728 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding-top: 64px; /* reserves space for the fixed navbar */
+    background: #f4f6f9;
+    color: #171717;
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+}
+
+
+/* ---------- navbar ---------- */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* FIX: was 20 — must beat .back-btn so the button scrolls underneath */
+    height: 64px; /* keep in sync with body padding-top */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px clamp(18px, 5vw, 64px);
+    background-color: #ffd233;
+    box-shadow: 0 3px 16px rgba(27, 35, 45, .18);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-section img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.logo-section h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 900;
+    color: #000;
+}
+
+.user-profile img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+
+/* ---------- page container ---------- */
+
+.page {
+    position: relative;
+    width: min(760px, calc(100% - 32px));
+    margin: 0 auto 48px;
+    padding-top: 0;
+}
+
+
+/* ---------- back button ---------- */
+
+/* Fallback (button NOT a direct child of .page, e.g. terms page):
+   floats outside the left edge of the page container */
+.back-btn {
+    position: absolute;
+    top: 28px;
+    left: -58px;
+    z-index: 10; /* FIX: was 100 — must stay below the navbar */
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 5px 16px rgba(27, 35, 45, .2);
+    transition: transform 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+}
+
+.back-btn span {
+    font-size: 20px;
+    line-height: 1;
+}
+
+/* Direct child of .page: a normal in-flow item sitting under the navbar */
+.page > .back-btn {
+    position: relative;
+    inset: auto;
+    z-index: 10; /* FIX: was 30 — must stay below the navbar */
+    margin: 16px 0 16px;
+}
+
+
+/* ---------- cards ---------- */
+
+.card {
+    margin-bottom: 16px;
+    padding: 26px clamp(20px, 4vw, 34px);
+    background-color: white;
+    border: 0;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(27, 35, 45, .14), 0 2px 6px rgba(27, 35, 45, .08);
+}
+
+.page > .card:first-of-type {
+    padding-top: 22px;
+}
+
+.page > .card:first-of-type .title-row h1 {
+    margin-left: 20px;
+}
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1,
+.section-title {
+    color: #151515;
+    letter-spacing: -.02em;
+}
+
+h1 {
+    margin: 0 0 20px;
+    font-size: clamp(23px, 3vw, 28px);
+}
+
+.section-title {
+    margin: 0 0 18px;
+    font-size: 20px;
+}
+
+.location-icon {
+    font-size: 18px;
+    margin-right: 7px;
+}
+
+.edit,
+.change {
+    color: #b27a00;
+}
+
+.edit {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #fff7d6;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.change {
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+/* ---------- map + address ---------- */
+
+.map {
+    width: 100%;
+    height: 230px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 13px;
+    box-shadow: 0 2px 8px rgba(27, 35, 45, .06), inset 0 0 0 1px rgba(0, 0, 0, .08);
+}
+
+.map > iframe {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+    display: block;
+}
+
+.address {
+    margin: 16px 0;
+    color: #343434;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ---------- inputs ---------- */
+
+input {
+    width: 100%;
+    padding: 15px;
+    background: #fbfcfd;
+    border: 1px solid #d7dce2;
+    border-radius: 10px;
+    color: #222;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+input:focus {
+    border-color: #e0b300;
+    box-shadow: 0 0 0 3px rgba(255, 210, 51, .2);
+}
+
+
+/* ---------- contactless switch ---------- */
+
+.switch-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-top: 18px;
+    color: #444;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.switch {
+    position: relative;
+    flex: 0 0 auto;
+    width: 40px;
+    height: 22px;
+    padding: 3px;
+    background: #ffd233;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.switch.active {
+    background: #39a96b;
+}
+
+.switch input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.switch span {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    transition: transform .2s ease;
+}
+
+.switch input:checked + span {
+    transform: translateX(18px);
+}
+
+
+/* ---------- delivery options ---------- */
+
+.delivery-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 58px;
+    margin-bottom: 9px;
+    padding: 14px 16px;
+    background: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.delivery-option:last-child {
+    margin-bottom: 0;
+}
+
+.delivery-option:hover {
+    border-color: #ffd233;
+    background: #fffdf2;
+    transform: translateY(-1px);
+}
+
+/* after :hover so a selected option keeps its highlight while hovered */
+.delivery-option.selected,
+.payment-choice.selected {
+    border-color: #e0b300;
+    background: #fff8d9;
+    box-shadow: inset 0 0 0 1px #ffd233;
+}
+
+.delivery-option strong {
+    min-width: 72px;
+    font-weight: bold;
+}
+
+.delivery-option span:not(.lightning):not(.price-tag) {
+    color: #757575;
+}
+
+.lightning {
+    margin-left: -5px;
+}
+
+.price-tag {
+    margin-left: auto;
+    padding: 4px 9px;
+    background: #fff9dd;
+    border: 1px solid #ead78b;
+    border-radius: 15px;
+    color: #765700;
+    font-size: 11px;
+}
+
+
+/* ---------- tip ---------- */
+
+.tip-description {
+    margin-top: -8px;
+    margin-bottom: 15px;
+    color: #707070;
+    font-size: 13px;
+}
+
+.coin-icon {
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.checkbox {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    background: #fff;
+    border: 1px solid #c9cdd2;
+    border-radius: 50%;
+}
+
+.save-tip-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.save-tip-control input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.save-tip-control input:checked + .checkbox {
+    border-color: #d1a800;
+    background: #ffd233;
+    box-shadow: inset 0 0 0 5px #fff;
+}
+
+
+/* ---------- payment ---------- */
+
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    padding: 14px 0 0;
+    border-top: 1px solid #ececec;
+    font-weight: bold;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.payment-choice {
+    flex: 1;
+    padding: 10px 12px;
+    background: #fff;
+    border: 1px solid #dfe3e8;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.payment-choice:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+
+/* ---------- order summary ---------- */
+
+.summary-item {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    background: #f8f9fb;
+    border-radius: 10px;
+    color: #707070;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.cart-summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 4px 0;
+}
+
+.cart-summary-line strong {
+    flex: 0 0 auto;
+    color: #2e2e2e;
+}
+
+.divider {
+    margin-bottom: 16px;
+    border-top: 1px solid #ececec;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 11px 0;
+    color: #707070;
+    font-size: 14px;
+}
+
+.summary-line span:last-child {
+    color: #2e2e2e;
+    font-weight: 600;
+}
+
+
+/* ---------- terms ---------- */
+
+.terms {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.terms a {
+    color: #111111;
+    font-weight: bold;
+}
+
+.terms-page p {
+    color: #666;
+    line-height: 1.7;
+}
+
+
+/* ---------- total + order button ---------- */
+
+.total-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 4px;
+}
+
+.total-label {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.total-note {
+    color: #707070;
+    font-size: 13px;
+}
+
+.total-line {
+    flex: 1;
+    height: 1px;
+    background-color: #dddddd;
+}
+
+.total-price {
+    color: #171717;
+    font-size: 24px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.order-button {
+    display: block;
+    width: min(360px, 100%);
+    margin: 22px auto 0;
+    padding: 17px;
+    background-color: #ffd233;
+    border: none;
+    border-radius: 11px;
+    box-shadow: 0 5px 12px rgba(214, 166, 0, .2);
+    color: #000000;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.order-button:hover {
+    background: #f4c51d;
+    box-shadow: 0 7px 16px rgba(214, 166, 0, .28);
+    transform: translateY(-1px);
+}
+
+
+/* ---------- desktop: two-column grid ---------- */
+
+@media (min-width: 900px) {
+    .page {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        width: min(1040px, calc(100% - 64px));
+    }
+
+    /* back button takes the whole first row; the grid gap spaces it from the cards */
+    .page > .back-btn {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        justify-self: start;
+        margin-bottom: 0;
+    }
+
+    .page > .card:first-of-type {
+        grid-row: span 2;
+    }
+
+    .page > .card:last-of-type,
+    .page > .checkout-card:last-of-type {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* ---------- tablet / mobile ---------- */
+
+@media (max-width: 760px) {
+    .page {
+        width: calc(100% - 32px);
+        margin: 0 16px 32px;
+    }
+
+    .back-btn {
+        left: 0;
+    }
+
+    .card {
+        margin-bottom: 14px;
+        padding: 22px clamp(16px, 4vw, 24px);
+    }
+
+    .title-row,
+    .payment-header,
+    .payment-row,
+    .total-row {
+        gap: 12px;
+    }
+
+    .title-row,
+    .payment-header {
+        align-items: center;
+    }
+
+    .title-row h1 {
+        margin-bottom: 18px;
+    }
+
+    .section-title {
+        line-height: 1.25;
+    }
+
+    .switch-text {
+        align-items: center;
+        gap: 14px;
+    }
+
+    .total-row {
+        flex-wrap: wrap;
+    }
+
+    .total-line {
+        min-width: 80px;
+    }
+
+    .order-button {
+        width: 100%;
+    }
+}
+
+
+/* ---------- small phones ---------- */
+
+@media (max-width: 480px) {
+    nav {
+        padding-inline: 16px;
+    }
+
+    .page {
+        width: calc(100% - 24px);
+        margin-inline: 12px;
+    }
+
+    .card {
+        margin-bottom: 12px;
+        padding: 20px 16px;
+        border-radius: 13px;
+    }
+
+    h1,
+    .section-title {
+        font-size: 22px;
+    }
+
+    .map {
+        height: clamp(160px, 48vw, 200px);
+    }
+
+    .switch-text {
+        align-items: flex-start;
+        line-height: 1.5;
+    }
+
+    .switch-text > span {
+        min-width: 0;
+    }
+
+    .delivery-option {
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 7px;
+        min-height: 56px;
+        padding: 12px;
+    }
+
+    .price-tag {
+        margin-left: auto;
+    }
+
+    .payment-methods {
+        gap: 8px;
+    }
+
+    .payment-choice {
+        min-height: 44px;
+        padding: 10px 8px;
+    }
+}
+
+
+/* ---------- layout guard ----------
+   Loaded pages also pull in cart.css and darkmode.css. These rules use higher
+   specificity plus !important so the navbar/back-button layout can't be
+   overridden by them. */
+
+body {
+    padding-top: 64px !important;
+}
+
+body > nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 64px !important;
+    z-index: 1000 !important; /* FIX: was 20 — navbar must sit above the back button */
+}
+
+main.page > a.back-btn {
+    position: relative !important;
+    inset: auto !important;
+    margin: 16px 0 16px !important;
+}
+
+@media (min-width: 900px) {
+    main.page > a.back-btn {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        justify-self: start;
+        margin-bottom: 0 !important;
+    }
+}

@@ -1,0 +1,98 @@
+:root {
+  --yellow: #ffdc33;
+  --yellow-dark: #e0b900;
+  --ink: #17202a;
+  --muted: #68717b;
+  --line: #e3e6ea;
+  --card: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  background: #ffdc33;
+}
+
+.navbar {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px clamp(18px, 5vw, 70px);
+  background: #17202a;
+  border-bottom: 3px solid var(--yellow);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+}
+
+.logo { display: inline-flex; align-items: center; gap: 9px; color: #ffffff; text-decoration: none; }
+.navbar .logo img { width: 38px; height: 38px; object-fit: contain; }
+.biterush-title { font-size: 20px; letter-spacing: -.4px; }
+.page-title { padding-left: 16px; color: #cbd2d8; border-left: 1px solid #53606b; font-size: 14px; }
+
+.main {
+  width: min(1120px, 100%);
+  min-height: calc(100vh - 70px);
+  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(350px, 440px);
+  align-items: center;
+  gap: clamp(45px, 9vw, 130px);
+  padding: 52px 28px 64px;
+}
+
+.brand-section { text-align: center; }
+.brand-eyebrow { display: block; margin-bottom: 16px; color: #685900; font-size: 11px; font-weight: 800; letter-spacing: 2px; }
+.burger-mascot { display: block; width: min(310px, 76%); margin: 0 auto -20px; filter: drop-shadow(0 14px 8px rgba(85, 64, 0, .14)); }
+.biterush-center { font-size: clamp(42px, 6vw, 68px); font-weight: 900; letter-spacing: -3px; }
+.brand-section p { margin-top: 10px; font-size: 19px; line-height: 1.45; font-weight: 700; }
+.brand-section p span { color: #665800; font-size: 15px; font-weight: 500; }
+
+.login-box {
+  width: 100%;
+  padding: clamp(26px, 4vw, 38px);
+  background: var(--card);
+  border: 1px solid rgba(23, 32, 42, .08);
+  border-radius: 22px;
+  box-shadow: 0 22px 55px rgba(93, 75, 0, .18);
+}
+.login-header { position: relative; margin-bottom: 25px; padding-right: 55px; }
+.login-box h2 { margin-bottom: 7px; font-size: 29px; letter-spacing: -.8px; }
+.login-header p { color: var(--muted); font-size: 13px; line-height: 1.4; }
+.qr-section { position: absolute; top: 0; right: 0; display: grid; justify-items: center; gap: 3px; color: var(--ink); text-decoration: none; }
+.qr-notif { color: var(--muted); font-size: 10px; white-space: nowrap; }
+.qr-icon { color: #4c5964; font-size: 23px; }
+.input-group { margin-bottom: 16px; }
+.input-group label { display: block; margin-bottom: 7px; color: #37414b; font-size: 12px; font-weight: 700; }
+.input-group input { width: 100%; height: 47px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; outline: none; color: var(--ink); background: #fbfcfd; font-size: 14px; transition: border-color .2s, box-shadow .2s; }
+.input-group input:focus { border-color: var(--yellow-dark); box-shadow: 0 0 0 3px rgba(255, 220, 51, .28); }
+.password-group { position: relative; }
+.password-group input { padding-right: 44px; }
+.toggle-password { position: absolute; right: 11px; bottom: 10px; width: 28px; height: 28px; border: 0; color: #7a838c; background: transparent; cursor: pointer; }
+.button-primary { width: 100%; height: 47px; margin-top: 4px; border: 1px solid var(--yellow-dark); border-radius: 10px; color: #241f00; background: var(--yellow); font-size: 14px; font-weight: 800; cursor: pointer; transition: transform .2s, background .2s; }
+.button-primary:hover { background: #ffd21a; transform: translateY(-1px); }
+.forgot-password { display: block; margin-top: 13px; color: #536fae; font-size: 12px; text-align: right; text-decoration: none; }
+.forgot-password:hover, .signup-prompt a:hover { text-decoration: underline; }
+.line { display: flex; align-items: center; gap: 12px; margin: 24px 0 16px; color: #99a1a9; font-size: 10px; font-weight: 700; }
+.line::before, .line::after { content: ''; height: 1px; flex: 1; background: var(--line); }
+.social-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.btn-social { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 43px; border: 1px solid var(--line); border-radius: 10px; color: #3f4851; background: #fff; font-size: 13px; text-decoration: none; transition: background .2s, border-color .2s; }
+.btn-social:hover { border-color: #b9c0c7; background: #f7f8f9; }
+.signup-prompt { margin-top: 24px; color: var(--muted); font-size: 12px; text-align: center; }
+.signup-prompt a { color: #536fae; font-weight: 700; text-decoration: none; }
+
+@media (max-width: 760px) {
+  .navbar { height: 62px; }
+  .main { min-height: calc(100vh - 62px); grid-template-columns: 1fr; gap: 28px; padding: 36px 18px 45px; }
+  .brand-section { order: 1; }
+  .login-box { order: 2; max-width: 470px; margin: auto; }
+  .burger-mascot { width: 185px; }
+  .biterush-center { font-size: 46px; }
+}
+@media (max-width: 420px) {
+  .page-title { font-size: 12px; }
+  .navbar { padding-inline: 14px; }
+  .social-buttons { grid-template-columns: 1fr; }
+  .login-box { padding: 24px 19px; border-radius: 17px; }
+}

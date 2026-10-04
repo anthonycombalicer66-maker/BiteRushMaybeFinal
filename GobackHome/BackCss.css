@@ -1,0 +1,163 @@
+/* Base Reset Configuration */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #ffd233; /* Rich yellow theme canvas background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    cursor: pointer;   /* Visually prompts the user that the entire screen is clickable */
+}
+
+/* Header Navigation Bar Styling */
+.top-nav {
+    background-color: #17202a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    width: 100%;
+    height: 64px;
+    border-bottom: 3px solid #ffd233;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-section img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.logo-section h1 {
+    font-size: 22px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.user-profile img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Center Layout Area Container */
+.thank-you-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffd233;
+    padding: 20px;
+    position: relative;
+}
+
+/* ==========================================================================
+   STAGE 1: INTRO PICTURE TIMELINE
+   ========================================================================== */
+.intro-image-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Plays intro sequence for exactly 1.8s, then completely hides itself */
+    animation: imageTimeline 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.intro-pic {
+    max-width: 280px; /* Constrains graphic proportions dynamically */
+    height: auto;
+    object-fit: contain;
+}
+
+@keyframes imageTimeline {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) translateY(15px);
+    }
+    15%, 80% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.1) translateY(-15px);
+        visibility: hidden; /* FIX: Safely removes image layout from active viewport */
+    }
+}
+
+/* ==========================================================================
+   STAGE 2: THANK YOU TEXT REVEAL
+   ========================================================================== */
+.thank-you-content {
+    text-align: center;
+    position: absolute;
+    opacity: 0;
+    
+    /* Crucial 1.8s delay: Holds text hidden until Stage 1 image finishes disappearing */
+    animation: smoothFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+}
+
+.thank-you-title {
+    font-size: 48px;
+    font-weight: 900;
+    color: #111111;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+.thank-you-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #444444;
+}
+
+@media (max-width: 520px) {
+    .top-nav {
+        padding-inline: 16px;
+    }
+
+    .thank-you-container {
+        padding: 16px;
+    }
+
+    .intro-pic {
+        max-width: min(72vw, 280px);
+    }
+
+    .thank-you-title {
+        font-size: clamp(32px, 11vw, 48px);
+    }
+
+    .thank-you-subtitle {
+        font-size: 14px;
+    }
+}
+
+@keyframes smoothFadeUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.96) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}

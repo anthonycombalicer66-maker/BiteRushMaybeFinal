@@ -1,0 +1,188 @@
+@import url("../BiteRushHomePage/HomePageKulay.css");
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.favorites-main {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.favorites-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.favorites-header .section-heading {
+    margin-bottom: 0;
+}
+
+.favorites-header > .back-btn {
+    position: static;
+    width: 40px;
+    height: 36px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    z-index: auto;
+    text-decoration: none;
+}
+
+.favorites-header > .back-btn:hover {
+    transform: scale(1.05);
+}
+
+.favorites-header > .back-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.empty-fav-state {
+    grid-column: 1 / -1;
+    padding: 60px 20px;
+    color: #888;
+    text-align: center;
+}
+
+.empty-fav-state svg {
+    margin-bottom: 16px;
+}
+
+.empty-fav-state h3 {
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 20px;
+}
+
+.empty-fav-state p {
+    max-width: 380px;
+    margin: 0 auto 20px;
+    font-size: 14px;
+}
+
+.explore-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 20px;
+    background-color: #ffd233;
+    color: #000;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.explore-btn:hover {
+    background-color: #f2c219;
+}
+
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-actions .buy-btn {
+    display: inline-block !important;
+}
+
+.favorites-main .card-actions .buy-btn {
+    display: inline-block !important;
+}
+
+.fav-card-btn {
+    position: absolute;
+    top: 4px;
+    left: 136px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: #ff3b5c;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.521);
+    z-index: 4;
+    transition: transform 0.15s ease, color 0.2s ease;
+}
+
+.fav-card-btn:hover {
+    transform: scale(1.12);
+}
+
+.fav-card-btn svg {
+    fill: #ff3b5c;
+}
+
+.favorites-main .fav-card-btn {
+    top: calc(50% - 75px);
+    left: 136px;
+}
+
+@media (max-width: 900px) {
+    .filter-cart-row .cart-btn {
+        grid-column: 2 / 4;
+        justify-self: center;
+    }
+
+    .favorites-header > .back-btn {
+        position: static;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .favorites-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 560px) {
+    .favorites-main {
+        padding-inline: 12px;
+    }
+
+    .food-card {
+        height: auto;
+        min-height: 150px;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .food-img {
+        width: 104px;
+        height: 104px;
+        flex: 0 0 104px;
+    }
+
+    .food-card > .favorite-btn,
+    .fav-card-btn {
+        top: calc(50% - 52px);
+        left: 78px;
+        width: 40px;
+        height: 40px;
+    }
+}

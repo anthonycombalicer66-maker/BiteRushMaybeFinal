@@ -1,0 +1,222 @@
+/* general setup */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: arial, sans-serif;
+}
+
+body {
+  background-color: #ffdc33;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* top navbar */
+.navbar {
+  background-color: #17202a;
+  border-bottom: 3px solid #ffd233;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 15px;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar .logo img {
+  height: 32px;
+  width: 32px;
+}
+
+.navbar .biterush-title {
+  font-weight: bold;
+  font-size: 18.5px;
+  color: #ffffff;
+}
+
+.page-title {
+  color: #cbd2d8;
+  font-size: 15.85px;
+  border-left: 1px solid #53606b;
+  padding-left: 15px;
+}
+
+/* main content */
+.main {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 150px;
+  padding: 40px 20px;
+}
+
+/* back button */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #17202a;
+  background: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .18);
+  z-index: 30;
+  transition: transform .2s ease, background-color .2s ease;
+}
+
+.back-button:hover {
+  background: #ffdc33;
+  transform: scale(1.05);
+}
+
+/* brand section */
+.brand-section {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.burger-mascot {
+  display: block;
+  width: 230px;
+  margin-bottom: -15px;
+}
+
+.biterush-center {
+  font-size: 52px;
+  font-weight: 900;
+}
+
+.brand-section p {
+  font-size: 20px;
+}
+
+/* qr login box */
+.qr-login-box {
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  background-color: #f7f8ff;
+  border-radius: 6px;
+  padding: 35px;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  min-height: 345px;
+  text-align: center;
+}
+
+/* qr title */
+.qr-login-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #111111;
+}
+
+/* qr code */
+.qr-code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.qr-code img {
+  width: 155px;
+  height: 155px;
+  object-fit: contain;
+}
+
+/* qr text */
+.qr-description {
+  font-size: 0.7rem;
+  color: #111111;
+  margin-bottom: 15px;
+}
+
+.qr-instruction {
+  font-size: 0.75rem;
+  color: #222222;
+  margin-bottom: 25px;
+}
+
+/* sign up */
+.signup-prompt {
+  font-size: 0.7rem;
+  color: #111111;
+}
+
+.signup-prompt a {
+  color: #4a70d6;
+  text-decoration: none;
+}
+
+.signup-prompt a:hover {
+  text-decoration: underline;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    padding: 60px 20px 30px;
+  }
+
+  .brand-section {
+    margin-left: 0;
+  }
+
+  .burger-mascot {
+    width: 165px;
+  }
+
+  .biterush-center {
+    font-size: 42px;
+  }
+
+  .brand-section p {
+    font-size: 16px;
+  }
+
+  .qr-login-box {
+    max-width: 285px;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar {
+    padding-inline: 14px;
+  }
+
+  .page-title {
+    font-size: 13px;
+  }
+
+  .main {
+    padding-inline: 14px;
+  }
+
+  .biterush-center {
+    font-size: 36px;
+  }
+
+  .qr-login-box {
+    max-width: 100%;
+    padding: 24px 18px;
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - BiteRush</title>
+    <link rel="stylesheet" href="BackCss.css">
+    <link rel="stylesheet" href="../darkmode.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="logo-section">
+            <img src="../BiteRushHomePage/HomePagePics/burger.png" alt="BiteRush Logo">
+            <h1>BiteRush</h1>
+        </div>
+        <div class="user-profile">
+            <img src="../BiteRushHomePage/HomePagePics/image%20108.png" alt="User Profile">
+        </div>
+    </nav>
+
+    <!-- Main Dynamic Content Canvas -->
+    <main class="thank-you-container">
+        
+        <!-- STAGE 1: The Intro Image (Completely disappears at 1.8 seconds) -->
+        <div class="intro-image-wrapper">
+            <!-- Replace 'delivery-animation.png' with your actual file path/name -->
+            <img src="../Login/Pics/burger.png" alt="Delivery Intro" class="intro-pic">
+        </div>
+
+        <!-- STAGE 2: The Core Text Block (Appears only after the image is gone) -->
+        <div class="thank-you-content">
+            <h1 class="thank-you-title">Thank you</h1>
+            <p class="thank-you-subtitle">Click anywhere to go home screen</p>
+        </div>
+        
+    </main>
+
+    <!-- Global Click Redirect Script -->
+    <script>
+        document.body.addEventListener('click', function() {
+            // Instantly returns user to your homepage file path
+            window.location.href = '../BiteRushHomePage/index.html';
+        });
+    </script>
+</body>
+</html>

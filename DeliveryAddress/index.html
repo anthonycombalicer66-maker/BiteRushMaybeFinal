@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Address</title>
+    <!-- order matters: later stylesheets win. cart.css first, then page styles, then dark mode -->
+    <link rel="stylesheet" href="../Cart/cart.css">
+    <link rel="stylesheet" href="styleadd.css?v=2">
+    <link rel="stylesheet" href="../darkmode.css">
+    <!-- LAYOUT FIX: lives in the HTML itself, after every stylesheet, so no CSS file can override it -->
+    <style id="layout-fix">
+        body { padding-top: 64px !important; }
+        body > nav {
+            position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important;
+            height: 64px !important; z-index: 1000 !important; box-sizing: border-box !important;
+        }
+        main.page > a.back-btn {
+            position: relative !important; inset: auto !important;
+            margin: 16px 0 16px !important; transform: none;
+        }
+        @media (min-width: 900px) {
+            main.page > a.back-btn {
+                grid-column: 1 / -1; grid-row: 1; justify-self: start;
+                margin-bottom: 0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="padding-top:64px !important">
+
+    <!-- header -->
+    <nav style="position:fixed !important;top:0 !important;left:0 !important;right:0 !important;height:64px !important;z-index:1000 !important">
+        <div class="logo-section">
+            <img src="../BiteRushHomePage/HomePagePics/burger.png" alt="BiteRush Logo">
+            <h1>BiteRush</h1>
+        </div>
+
+        <div class="user-profile">
+            <img src="../BiteRushHomePage/HomePagePics/image%20108.png" alt="User Profile">
+        </div>
+    </nav>
+
+    <main class="page">
+        <a href="#" class="back-btn" id="deliveryBackButton" style="position:relative !important;inset:auto !important" aria-label="Go Back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </a>
+
+        <!-- delivery address -->
+        <section class="card">
+            <div class="title-row">
+                <h1>
+                    Delivery address
+                </h1>
+                <button class="edit">✎</button>
+            </div>
+
+            <!-- map -->
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4122.996383060373!2d123.75254811084002!3d13.147982210932918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a101817184433f%3A0xa359b8455f0427f2!2sForbes%20College%20Campus%202!5e1!3m2!1sen!2sph!4v1790145651294!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+
+            <p class="address">
+                Brgy. 69, MgaNigghas Legazpi City,
+                zone 6 Welcome Ave
+                Albay
+            </p>
+
+            <input type="text" placeholder="Delivery instructions">
+
+            <div class="switch-text">
+                <span>
+                    Contactless delivery:
+                    switch to online payment for this option
+                </span>
+                <label class="switch">
+                    <input id="contactlessToggle" type="checkbox" aria-label="Enable contactless delivery">
+                    <span></span>
+                </label>
+            </div>
+        </section>
+
+        <!-- delivery options -->
+        <section class="card">
+            <h2 class="section-title">Delivery options</h2>
+
+            <div class="delivery-option" data-delivery-adjustment="79.80" data-delivery-label="Priority">
+                <strong>Priority</strong>
+                <span>15 - 30 mins</span>
+                <span class="lightning">⚡</span>
+                <span class="price-tag">+ ₱79.80</span>
+            </div>
+
+            <div class="delivery-option" data-delivery-adjustment="-29.70" data-delivery-label="Saver">
+                <strong>Saver</strong>
+                <span>30 - 45 mins</span>
+                <span class="price-tag">- ₱29.70</span>
+            </div>
+
+            <div class="delivery-option selected" data-delivery-adjustment="0" data-delivery-label="Standard">
+                <strong>Standard</strong>
+                <span>20 - 45 mins</span>
+            </div>
+
+            <div class="delivery-option" data-delivery-adjustment="0" data-delivery-label="Schedule">
+                <strong>Schedule</strong>
+                <span>Select a date and time</span>
+            </div>
+        </section>
+
+        <!-- tip the rider -->
+        <section class="card">
+            <h2 class="section-title">
+                <span class="coin-icon"></span>
+                Tip your rider
+            </h2>
+            <p class="tip-description">
+                100% of the tips go to your rider, we don’t deduct anything from it.
+            </p>
+            <input id="tipAmount" type="number" min="0" step="1" placeholder="Tip amount">
+            <div class="checkbox-row">
+                <label class="save-tip-control">
+                    <input id="saveTip" type="checkbox">
+                    <span class="checkbox"></span>
+                    <span>Save for your next order</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- payment methods -->
+        <section class="card">
+            <div class="payment-header">
+                <h2 class="section-title">
+                    <span class="wallet-icon"></span>
+                    Payment method
+                </h2>
+                <button class="change">Change</button>
+            </div>
+
+            <div class="payment-row">
+                <span>
+                    <span class="cash-icon"></span>
+                    <span id="paymentMethodLabel">Cash</span>
+                </span>
+                <span>₱ 795.00</span>
+            </div>
+            <div class="payment-methods" role="group" aria-label="Payment method">
+                <button class="payment-choice selected" type="button" data-payment="Cash">Cash</button>
+                <button class="payment-choice" type="button" data-payment="Online payment">Online payment</button>
+            </div>
+        </section>
+
+        <!-- order summary -->
+        <section class="card">
+            <h2 class="section-title">
+                <span class="receipt-icon"></span>
+                Order summary
+            </h2>
+
+            <div class="summary-item">
+                <strong>1x Carbonara Pasta with Bacon Bits</strong>
+                <br>
+                <small>Small coke</small>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <span>₱ 158.00</span>
+            </div>
+
+            <div class="summary-line" id="deliveryFeeSummaryLine">
+                <span>Standard delivery</span>
+                <span>₱ 149.00</span>
+            </div>
+
+            <div class="summary-line">
+                <span>Service fee</span>
+                <span>₱ 9.00</span>
+            </div>
+            <div class="summary-line" id="tipSummaryLine" hidden>
+                <span>Rider tip</span>
+                <span>₱ 0.00</span>
+            </div>
+        </section>
+
+        <!-- final order -->
+        <section class="card">
+            <p class="terms">
+                By completing this order, I agree to all <a href="terms.html">terms &amp; conditions</a>.
+            </p>
+
+            <div class="total-row">
+                <span class="total-label">Total</span>
+                <span class="total-note">(incl. fees and tax)</span>
+                <span class="total-line"></span>
+                <span class="total-price">₱ 320.00</span>
+            </div>
+            <a href="../GobackHome/index.html" style="text-decoration: none;">
+                <button class="order-button">Order now</button>
+            </a>
+        </section>
+
+    </main>
+
+    <script src="../Cart/cart.js"></script>
+    <script src="../Cart/checkout.js"></script>
+    <script src="delivery.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteRush - Search Results</title>
+    <link rel="stylesheet" href="SearchResults.css">
+    <link rel="stylesheet" href="../Cart/cart.css">
+    <link rel="stylesheet" href="../darkmode.css">
+</head>
+<body>
+    <nav>
+        <a class="logo-section" href="../BiteRushHomePage/index.html" style="text-decoration:none">
+            <img src="../BiteRushHomePage/HomePagePics/burger.png" alt="BiteRush Logo">
+            <h1>BiteRush</h1>
+        </a>
+        <a class="user-profile" href="../UserInfo/index.html">
+            <img src="../BiteRushHomePage/HomePagePics/image%20108.png" alt="User Profile">
+        </a>
+    </nav>
+    <div class="filter-cart-row">
+        <div class="filter-bar">
+            <a href="../BiteRushHomePage/index.html"><button class="filter-btn">Home</button></a>
+            <a href="../BiteRushFoodMenuPages/BiteRushBreakfastPage/index.html"><button class="filter-btn">Breakfast</button></a>
+            <a href="../BiteRushFoodMenuPages/BiteRushLunchPage/index.html"><button class="filter-btn">Lunch</button></a>
+            <a href="../BiteRushFoodMenuPages/BiteRushDinnerPage/index.html"><button class="filter-btn">Dinner</button></a>
+            <a href="../BiteRushFoodMenuPages/BiteRushBGandFR/index.html"><button class="filter-btn">Burger and Fries</button></a>
+            <form class="search-form" action="index.html" method="get">
+                <input class="search-input" id="searchInput" name="q" type="search" placeholder="Search dishes..." aria-label="Search dishes">
+                <button class="search-btn" id="searchButton" type="submit" aria-label="Search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                </button>
+            </form>
+        </div>
+        <a href="../FavPage/index.html" class="menu-favorites-btn" aria-label="View Favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21.23 L4.22 13.45 A5.5 5.5 0 0 1 12 5.67 A5.5 5.5 0 0 1 19.78 13.45 Z"></path>
+            </svg>
+        </a>
+        <button class="cart-btn" type="button" aria-label="Shopping Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+        </button>
+    </div>
+    <main class="search-results-main">
+        <div class="search-results-heading">
+            <h2 id="resultsTitle">Search Results</h2>
+            <p id="resultsSummary"></p>
+        </div>
+        <div class="search-results-grid" id="resultsGrid"></div>
+    </main>
+    <script src="search-results-data.js"></script>
+    <script>
+        const query = new URLSearchParams(location.search).get('q')?.trim() || '';
+        const normalizedQuery = query.toLowerCase();
+        const matches = window.BITERUSH_DISHES.filter(dish =>
+            !normalizedQuery ||
+            [dish.title, dish.category, dish.description, dish.menu]
+                .join(' ').toLowerCase().includes(normalizedQuery)
+        );
+        const grid = document.getElementById('resultsGrid');
+        document.getElementById('resultsTitle').textContent = query ? `Results for "${query}"` : 'Search Results';
+        document.getElementById('resultsSummary').textContent = matches.length
+            ? `${matches.length} dish${matches.length === 1 ? '' : 'es'} found`
+            : 'No dishes match your search.';
+        if (!matches.length) {
+            grid.innerHTML = '<p class="search-result-empty">Try another dish name, category, or ingredient.</p>';
+        } else {
+            grid.innerHTML = matches.map(dish => `
+                <article class="search-result-card">
+                    <div class="search-result-image">
+                        <img src="${dish.image}" alt="${dish.title}">
+                        <button class="search-result-favorite" type="button"
+                            aria-label="Add ${dish.title} to favorites" aria-pressed="false">
+                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="search-result-info">
+                        <h3>${dish.title}</h3>
+                        <div class="search-result-category">${dish.category}</div>
+                        <p class="search-result-description">${dish.description}</p>
+                        <div class="search-result-meta">${dish.menu} · ${dish.time} · ${dish.calories}</div>
+                        <div class="search-result-footer">
+                            <span class="search-result-price">${dish.price}</span>
+                            <a class="search-result-buy" href="${dish.link}">Buy</a>
+                            <button class="search-result-add add-btn" type="button" aria-label="Add ${dish.title} to cart"
+                                data-title="${dish.title}" data-price="${(dish.price.match(/(\d+(?:\.\d+)?)\s*$/) || ['0', '0'])[1]}"
+                                data-img="${dish.image}" data-link="${dish.link}">+</button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+        const favoritesKey = 'biterush_favorites';
+        let favorites;
+        try {
+            favorites = JSON.parse(localStorage.getItem(favoritesKey) || '[]');
+            if (!Array.isArray(favorites)) favorites = [];
+        } catch (error) {
+            console.error('Unable to read saved favorites:', error);
+            favorites = [];
+        }
+        grid.querySelectorAll('.search-result-card').forEach((card, index) => {
+            const dish = matches[index];
+            const favoriteButton = card.querySelector('.search-result-favorite');
+            const isFavorite = () => favorites.some(item => item.title === dish.title);
+            const updateFavoriteButton = () => {
+                const active = isFavorite();
+                favoriteButton.classList.toggle('favorited', active);
+                favoriteButton.setAttribute('aria-pressed', String(active));
+                favoriteButton.setAttribute('aria-label', `${active ? 'Remove' : 'Add'} ${dish.title} ${active ? 'from' : 'to'} favorites`);
+            };
+            favoriteButton.addEventListener('click', () => {
+                if (isFavorite()) {
+                    favorites = favorites.filter(item => item.title !== dish.title);
+                } else {
+                    favorites.push({
+                        title: dish.title,
+                        price: (dish.price.match(/(\d+(?:\.\d+)?)\s*$/) || ['0', '0'])[1],
+                        img: new URL(dish.image, location.href).href,
+                        category: dish.category,
+                        desc: dish.description,
+                        link: dish.link
+                    });
+                }
+                localStorage.setItem(favoritesKey, JSON.stringify(favorites));
+                updateFavoriteButton();
+            });
+            updateFavoriteButton();
+        });
+    </script>
+    <script src="../Cart/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings - BiteRush</title>
+    <link rel="stylesheet" href="UserInfoEditCss.css">
+    <link rel="stylesheet" href="../darkmode.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="logo-section">
+            <img src="../BiteRushHomePage/HomePagePics/burger.png" alt="BiteRush Logo">
+            <h1>BiteRush</h1>
+        </div>
+        <div class="user-profile">
+            <img src="../BiteRushHomePage/HomePagePics/image%20108.png" alt="User Profile">
+        </div>
+    </nav>
+
+    <!-- Main Content Grid -->
+    <main class="settings-container">
+        
+        <!-- Back Button Area -->
+        <a href="../BiteRushHomePage/index.html" class="back-btn" aria-label="Go Back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </a>
+
+        <header class="settings-header">
+            <h2>Account Settings</h2>
+            <p>Edit your name, avatar, etc.</p>
+        </header>
+
+        <!-- White Card Box Content Split Layout -->
+        <div class="settings-card">
+            
+            <!-- Left Side form elements -->
+            <form id="profile-form" class="form-section" onsubmit="event.preventDefault();">
+                
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" value="eannyix" disabled>
+                </div>
+
+                <div class="input-group">
+                    <label for="fullname">Your Name</label>
+                    <input type="text" id="fullname" value="Ian Maceda" disabled>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" value="••••••••••••••" disabled>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" value="ianb4kl4nigru69@gmail.com" disabled>
+                </div>
+
+                <div class="theme-setting-row">
+                    <div>
+                        <strong>Dark Mode</strong>
+                        <p>Use a darker appearance across BiteRush.</p>
+                    </div>
+                    <label class="theme-switch" for="darkModeToggle">
+                        <input type="checkbox" id="darkModeToggle" aria-label="Enable dark mode">
+                        <span aria-hidden="true"></span>
+                    </label>
+                </div>
+
+                <!-- Action Button Control Row Container -->
+                <div class="action-buttons-row">
+                    <!-- Initially hidden buttons -->
+                    <button type="button" id="cancel-btn" class="secondary-btn hide-element">Cancel</button>
+                    <button type="button" id="confirm-btn" class="primary-btn hide-element">Confirm</button>
+                    
+                    <!-- Initially visible button -->
+                    <button type="button" id="edit-btn" class="primary-btn">Edit Information</button>
+                </div>
+
+                <button type="button" id="signout-btn" class="signout-btn">Sign out</button>
+            </form>
+
+            <!-- Right Side Profile Section -->
+            <div class="avatar-section">
+                <div class="avatar-wrapper">
+                    <!-- Recycled profile picture frame layout -->
+                    <img src="../BiteRushHomePage/HomePagePics/image%20108.png" alt="Big User Profile">
+                    <div class="avatar-overlay-icons">
+                        <span class="icon-yellow">🍔</span>
+                        <span class="icon-dark">📷</span>
+                    </div>
+                </div>
+                <strong id="avatar-handle">@eannyix</strong>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- State Machine & Data Persistence Script Logic -->
+    <script>
+        // DOM Element selectors
+        const formInputs = document.querySelectorAll('#profile-form input');
+        const editBtn = document.getElementById('edit-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const confirmBtn = document.getElementById('confirm-btn');
+        const avatarHandle = document.getElementById('avatar-handle');
+
+        // Object cache to hold original text arrays in case user aborts changes via 'Cancel'
+        let oldFormCache = {};
+
+        // Load saved information on window startup
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('username')) document.getElementById('username').value = localStorage.getItem('username');
+            if (localStorage.getItem('fullname')) document.getElementById('fullname').value = localStorage.getItem('fullname');
+            if (localStorage.getItem('email')) document.getElementById('email').value = localStorage.getItem('email');
+            
+            // Set matching visible handle tag text dynamically
+            avatarHandle.textContent = '@' + document.getElementById('username').value;
+        });
+
+        // Trigger Edit Access State Action
+        editBtn.addEventListener('click', () => {
+            // Cache active state strings
+            formInputs.forEach(input => {
+                oldFormCache[input.id] = input.value;
+                input.removeAttribute('disabled');
+            });
+
+            // Adjust interactive control elements interface configuration states
+            formInputs[0].focus();
+            editBtn.classList.add('hide-element');
+            cancelBtn.classList.remove('hide-element');
+            confirmBtn.classList.remove('hide-element');
+        });
+
+        // Trigger Terminate & Drop Alterations Event (Cancel Action)
+        cancelBtn.addEventListener('click', () => {
+            // Restore previous inputs
+            formInputs.forEach(input => {
+                input.value = oldFormCache[input.id];
+                input.setAttribute('disabled', 'true');
+            });
+
+            // Revert interface presentation states
+            toggleActionInterface();
+        });
+
+        // Trigger Save Changes & Form Lock Event (Confirm Action)
+        confirmBtn.addEventListener('click', () => {
+            // Persist strings directly across localStorage registers safely
+            localStorage.setItem('username', document.getElementById('username').value);
+            localStorage.setItem('fullname', document.getElementById('fullname').value);
+            localStorage.setItem('email', document.getElementById('email').value);
+
+            // Dynamically refresh visual avatar username display handle string
+            avatarHandle.textContent = '@' + document.getElementById('username').value;
+
+            // Secure field lock controls
+            formInputs.forEach(input => input.setAttribute('disabled', 'true'));
+            
+            // Revert interface presentation states
+            toggleActionInterface();
+        });
+
+        // Utility switch layout controller
+        function toggleActionInterface() {
+            editBtn.classList.remove('hide-element');
+            cancelBtn.classList.add('hide-element');
+            confirmBtn.classList.add('hide-element');
+        }
+
+        document.getElementById('signout-btn').addEventListener('click', () => {
+            ['username', 'fullname', 'email'].forEach(key => localStorage.removeItem(key));
+            window.location.href = '../Login/index.html';
+        });
+    </script>
+</body>
+</html>

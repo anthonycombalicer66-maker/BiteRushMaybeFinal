@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../darkmode.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Continue with Google | BiteRush</title>
+  <link rel="stylesheet" href="./auth-pages.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../darkmode.css">
+</head>
+<body>
+  <header class="auth-nav"><a href="index.html" class="auth-logo"><img src="./images/burger.png" alt="">BiteRush</a><span>Google sign in</span></header>
+  <main class="auth-wrap">
+    <section class="auth-card social-card">
+      <div class="social-brand google"><i class="fa-brands fa-google"></i></div>
+      <h1>Continue with Google</h1>
+      <p class="auth-intro">Sign in with your Google account to continue to BiteRush.</p>
+      <form action="../BiteRushHomePage/index.html">
+        <label for="google-email">Email or phone number</label>
+        <input id="google-email" type="text" placeholder="Enter your Google email" autocomplete="username" required>
+        <label for="google-password">Password</label>
+        <input id="google-password" type="password" placeholder="Enter your Google password" autocomplete="current-password" required>
+        <button type="submit" class="auth-primary google-button">Continue</button>
+      </form>
+      <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> Use another login method</a>
+    </section>
+  </main>
+</body>
+</html>

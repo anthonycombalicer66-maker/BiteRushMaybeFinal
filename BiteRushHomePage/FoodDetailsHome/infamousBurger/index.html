@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../../../darkmode.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteRush - Order Details</title>
+    <link rel="stylesheet" href="../../../FoodDetails/BurgerAndFries/infamousBurger.css">
+    <link rel="stylesheet" href="../../../Cart/cart.css">
+    <link rel="stylesheet" href="../../../darkmode.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo-section">
+            <img src="../../HomePagePics/burger.png" alt="BiteRush Logo">
+            <h1>BiteRush</h1>
+        </div>
+
+        <div class="user-profile">
+            <img src="../../HomePagePics/image%20108.png" alt="User Profile">
+        </div>
+    </nav>
+
+    <!-- Floating Back Button -->
+    <a href="../../index.html">
+    <button class="back-btn" aria-label="Go Back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+    </button>
+    </a>
+
+    <main class="checkout-container">
+
+        <!-- Item Detail Card -->
+        <div class="checkout-card item-card">
+            <img src="../../../BiteRushFoodMenuPages/BiteRushBGandFR/pics/classic.png" alt="PastaBites" class="item-img">
+            
+            <div class="item-details">
+                <h2 class="item-title">BurgerBites</h2>
+                <h3 class="item-subtitle">The Infamous Cheese Burger</h3>
+                <p class="item-description">
+                    Simple and satisfying beef patty with double cheddar, crisp lettuce, tomato slice, and special burger sauce.
+                </p>
+
+                <div class="item-meta">
+                    <span class="meta-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        15–25 minutes
+                    </span>
+                    <span class="meta-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                        700–850 kcal
+                    </span>
+                </div>
+            </div>
+
+            <div class="item-quantity-price">
+                <span class="item-price">₱ 179</span>
+                <div class="quantity-control">
+                    <button class="qty-btn">-</button>
+                    <span class="qty-count">1</span>
+                    <button class="qty-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary & Vouchers Card -->
+        <div class="checkout-card summary-card">
+            
+            <div class="summary-header">
+                <h2>Subtotal</h2>
+                <span class="header-amount">₱ 158.00</span>
+            </div>
+
+            <div class="fee-row">
+                <div class="fee-info">
+                    <span class="fee-title">Standard delivery</span>
+                    <span class="fee-subtext">₱ 149 more to free delivery</span>
+                </div>
+                <span class="fee-amount">₱ 149.00</span>
+            </div>
+
+            <div class="fee-row">
+                <div class="fee-info">
+                    <span class="fee-title">Standard delivery</span>
+                    <span class="fee-subtext">₱ 149 more to free delivery</span>
+                </div>
+                <span class="fee-amount">₱ 4.00</span>
+            </div>
+
+            <div class="fee-row">
+                <div class="fee-info flex-center">
+                    <span class="fee-title">Service fee</span>
+                    <button class="info-icon" aria-label="Service fee info">i</button>
+                </div>
+                <span class="fee-amount">₱ 9.00</span>
+            </div>
+
+            <div class="voucher-section-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2z"/><line x1="9" y1="9" x2="9" y2="15"/><line x1="15" y1="9" x2="15" y2="15"/></svg>
+                <span>Apply a voucher</span>
+            </div>
+
+            <!-- Vouchers List -->
+            <div class="voucher-list">
+                
+                <label class="voucher-item">
+                    <div class="voucher-ticket">
+                        <div class="voucher-left">
+                            <span class="discount">20%</span>
+                            <span class="off">Off</span>
+                        </div>
+                        <div class="voucher-right">
+                            <strong>20% off Capped at ₱500</strong>
+                            <p>Min. Spend ₱249</p>
+                            <p class="validity">Valid till 11/30/25</p>
+                        </div>
+                    </div>
+                    <div class="voucher-radio-wrapper">
+                        <input type="radio" name="voucher" class="voucher-radio">
+                        <span class="custom-radio"></span>
+                    </div>
+                </label>
+
+                <label class="voucher-item">
+                    <div class="voucher-ticket">
+                        <div class="voucher-left">
+                            <span class="discount">15%</span>
+                            <span class="off">Off</span>
+                        </div>
+                        <div class="voucher-right">
+                            <strong>15% off Capped at ₱600</strong>
+                            <p>Min. Spend ₱199</p>
+                            <p class="validity">Valid till 11/30/25</p>
+                        </div>
+                    </div>
+                    <div class="voucher-radio-wrapper">
+                        <input type="radio" name="voucher" class="voucher-radio">
+                        <span class="custom-radio"></span>
+                    </div>
+                </label>
+
+            </div>
+
+        </div>
+
+        <!-- Utensils & Total Card -->
+        <div class="checkout-card total-card">
+            <div class="utensils-row">
+                <div class="utensils-info">
+                    <div class="utensils-title">
+                        <img src="../../../FoodDetails/pics/utensils.png" alt="Utensils Icon" class="utensils-icon">
+                        <span>Utensils</span>
+                    </div>
+                    <p>If Utensils aren't needed. Thanks for reducing waste!</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="total-row">
+                <div class="total-label">
+                    <h2>Total</h2>
+                    <span>(Inclu. fees and tax)</span>
+                </div>
+                <span class="total-amount">₱ 320.00</span>
+            </div>
+        </div>
+
+        <!-- Action Button -->
+        <a href="../../../DeliveryAddress/index.html" class="checkout-link">
+            <button class="checkout-btn" type="button">Review payment and address</button>
+        </a>
+
+    </main>
+
+    <script src="../../../Cart/cart.js"></script>
+    <script src="../../../Cart/checkout.js"></script>
+</body>
+</html>
